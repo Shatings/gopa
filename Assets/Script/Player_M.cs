@@ -161,8 +161,9 @@ public class Player_M : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shop")
         {
-            gameM.keys = 10;
-            gameM.keyT = 14;
+            gameM.keys = 14;
+            gameM.keyT = 10;
+            gameM.gameLoad = 1;
             Debug.Log("B");
             shopOn = true;
         }

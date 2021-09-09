@@ -33,6 +33,10 @@ public class Speaking : MonoBehaviour
         textN = textbox.transform.Find("TextName").GetComponent<Text>();
         textOb.SetActive(false);
         textbox.SetActive(false);
+        for(int i = 0; i < Que.Length; i++)
+        {
+            Que[i].SetActive(false);
+        }
         
         
        
@@ -72,6 +76,12 @@ public class Speaking : MonoBehaviour
             textN.text = "<size=60>" + gameM.textName[gameM.keyT]+"</size>";
 
             texts.text = "<size=50> " + gameM.textDi[gameM.keyT] + "</size>";
+            
+            if (gameM.keyT == gameM.keys&&gameM.gameLoad==1)
+            {
+                Quist();
+                gameM.gameLoad++;
+            }
             gameM.keyT++;
         }
         else
@@ -81,12 +91,24 @@ public class Speaking : MonoBehaviour
     }
     public void Quist()
     {
+        
         for(int i = 0; i < Que.Length; i++)
         {
-            Que[i+1].SetActive(true);
-            Que[i + 1].GetComponent<Text>().text = "<size=50> " + gameM.textDi[gameM.keyT + i]+"</size>";
+            Que[i].SetActive(true);
+            Que[i].transform.Find("Text").GetComponent<Text>().text = "<size=50> " + gameM.textDi[gameM.keyT + i]+"</size>";
         }
         
+    }
+    public void Answer(GameObject ob)
+    {
+        for(int i = 0; i < Que.Length; i++)
+        {
+            if (ob.name.Equals(Que[i].name))
+            {
+                Debug.Log("클릭~ "+ob.name);
+            }
+            Que[i].SetActive(false);
+        }
     }
     public void InvetoryError(item item,int id)
     {
