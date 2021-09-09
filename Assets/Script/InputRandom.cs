@@ -103,6 +103,7 @@ public class InputRandom : MonoBehaviour
             Debug.Log("성공!");
             gameM.money += (money * moneys);
             resultT.text = "성공!\n"+ (money * moneys)+"원를 회득하셨습니다.";
+            Debug.Log("dkdkd");
         }
         else
         {
