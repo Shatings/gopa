@@ -38,6 +38,7 @@ public class GameM : MonoBehaviour
     public Dictionary<int, string> textName = new Dictionary<int, string>();
     public int keyT=0;
     public int keys = 5;
+    public int gameplaying=0;
     void Json()
     {
         string jsonT = File.ReadAllText(Application.dataPath + "/Resources/DigoText.json");

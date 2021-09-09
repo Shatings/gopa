@@ -15,7 +15,7 @@ public class Speaking : MonoBehaviour
    
     public Button button;
     public Text textN;
-  
+    public GameObject[] Que;
    
     public float time;
     
@@ -78,6 +78,15 @@ public class Speaking : MonoBehaviour
         {
             textbox.SetActive(false);
         }
+    }
+    public void Quist()
+    {
+        for(int i = 0; i < Que.Length; i++)
+        {
+            Que[i+1].SetActive(true);
+            Que[i + 1].GetComponent<Text>().text = "<size=50> " + gameM.textDi[gameM.keyT + i]+"</size>";
+        }
+        
     }
     public void InvetoryError(item item,int id)
     {

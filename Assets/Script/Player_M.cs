@@ -23,6 +23,7 @@ public class Player_M : MonoBehaviour
     public bool shopOn=false;
     public ScenesM scenes;
     public GameM gameM;
+    
 
 
     // Start is called before the first frame update
