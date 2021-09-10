@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Speaking : MonoBehaviour
 {
-    public TextM text;
+ 
     public Text texts;
     public GameObject textbox;
     public GameM gameM;
@@ -15,12 +15,12 @@ public class Speaking : MonoBehaviour
    
     public Button button;
     public Text textN;
-    public GameObject[] Que;
+    public List<GameObject> Que = new List<GameObject>();
    
     public float time;
-    
-    
-    
+
+
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class Speaking : MonoBehaviour
         textN = textbox.transform.Find("TextName").GetComponent<Text>();
         textOb.SetActive(false);
         textbox.SetActive(false);
-        for(int i = 0; i < Que.Length; i++)
+        for(int i = 0; i < Que.Count; i++)
         {
             Que[i].SetActive(false);
         }
@@ -92,7 +92,7 @@ public class Speaking : MonoBehaviour
     public void Quist()
     {
         
-        for(int i = 0; i < Que.Length; i++)
+        for(int i = 0; i < Que.Count; i++)
         {
             Que[i].SetActive(true);
             Que[i].transform.Find("Text").GetComponent<Text>().text = "<size=50> " + gameM.textDi[gameM.keyT + i]+"</size>";
@@ -101,14 +101,30 @@ public class Speaking : MonoBehaviour
     }
     public void Answer(GameObject ob)
     {
-        for(int i = 0; i < Que.Length; i++)
+        int index = 0;
+
+        List<GameObject>  q = Que;
+        for(int i = 0; i < q.Count; i++)
         {
-            if (ob.name.Equals(Que[i].name))
+         
+            if (ob.name.Equals(q[i].name))
             {
                 Debug.Log("클릭~ "+ob.name);
+                gameM.keys *= 1000;
+                index = i;
+                
+             
             }
+            
+
+        }
+        for(int i = 0; i < Que.Count; i++)
+        {
             Que[i].SetActive(false);
         }
+        q.Remove(q[index]);
+        Dige();
+       
     }
     public void InvetoryError(item item,int id)
     {

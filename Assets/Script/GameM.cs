@@ -34,6 +34,7 @@ public class GameM : MonoBehaviour
     public TextAsset txt;
     [SerializeField]
     public string[,] sentence;
+    [SerializeField]
     public Dictionary<int, string> textDi = new Dictionary<int, string>();
     public Dictionary<int, string> textName = new Dictionary<int, string>();
     public int keyT=0;
@@ -41,7 +42,7 @@ public class GameM : MonoBehaviour
     public int gameplaying=0;
     void Json()
     {
-        string jsonT = File.ReadAllText(Application.dataPath + "/Resources/DigoText.json");
+        string jsonT = File.ReadAllText(Application.dataPath + "/Resources/Json/DigoText.json");
         Debug.Log(" " + jsonT);
         JsonData diT = JsonMapper.ToObject(jsonT);
         for (int i = 0; i < diT.Count; i++)

@@ -43,7 +43,7 @@ public class Data_M : MonoBehaviour
        
         JsonData item = JsonMapper.ToJson(itemDb);
         Debug.Log(item);
-        File.WriteAllText(Application.dataPath + "/Resources/ItemData.json", item.ToString());
+        File.WriteAllText(Application.dataPath + "/Resources/Json/ItemData.json", item.ToString());
 
         for (int i = 0; i <= 3; i++)
         {
@@ -75,33 +75,33 @@ public class Data_M : MonoBehaviour
 
         }
         JsonData stat = JsonMapper.ToJson(gameStat);
-        File.WriteAllText(Application.dataPath + "/Resources/stat.json", stat.ToString());
+        File.WriteAllText(Application.dataPath + "/Resources/Json/stat.json", stat.ToString());
         for (int i = 0; i < gameM.stInv.Count; i++)
         {
             stockDb.Add(new Stocks(gameM.stInv[i].id, gameM.stInv[i].stocksN, gameM.stInv[i].buyMoney));
             Debug.Log("주식: " + stockDb[i]);
         }
         JsonData stockJs = JsonMapper.ToJson(stockDb);
-        File.WriteAllText(Application.dataPath + "/Resources/stock.json", stockJs.ToString());
+        File.WriteAllText(Application.dataPath + "/Resources/Json/stock.json", stockJs.ToString());
         for(int i = 0; i <gameM.slotsMoney.Count; i++)
         {
             moneys.Add(gameM.slotsMoney[i]);
         }
         JsonData moneyJs = JsonMapper.ToJson(moneys);
-        File.WriteAllText(Application.dataPath + "/Resources/money.json", moneyJs.ToString());
+        File.WriteAllText(Application.dataPath + "/Resources/Json/money.json", moneyJs.ToString());
     }
     public void Load()
     {
         gameM.slotsMoney.Clear();
         gameM.invetory.Clear();
         gameM.stInv.Clear();
-        string JsonStr = File.ReadAllText(Application.dataPath + "/Resources/ItemData.json");
+        string JsonStr = File.ReadAllText(Application.dataPath + "/Resources/Json/ItemData.json");
         JsonData itemD = JsonMapper.ToObject(JsonStr);
-        string JsonStat = File.ReadAllText(Application.dataPath + "/Resources/stat.json");
+        string JsonStat = File.ReadAllText(Application.dataPath + "/Resources/Json/stat.json");
         JsonData StatD = JsonMapper.ToObject(JsonStat);
-        string JsonSt = File.ReadAllText(Application.dataPath + "/Resources/stock.json");
+        string JsonSt = File.ReadAllText(Application.dataPath + "/Resources/Json/stock.json");
         JsonData stocks = JsonMapper.ToObject(JsonSt);
-        string JsonMoney = File.ReadAllText(Application.dataPath + "/Resources/money.json");
+        string JsonMoney = File.ReadAllText(Application.dataPath + "/Resources/Json/money.json");
         JsonData moneys = JsonMapper.ToObject(JsonMoney);
 
         itemDb.Clear();
