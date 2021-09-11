@@ -31,27 +31,65 @@ public class GameM : MonoBehaviour
     public List<int> slotsMoney = new List<int>();
     public Vector3 npcTf;
 
-    public TextAsset txt;
+   
     [SerializeField]
     public string[,] sentence;
-    [SerializeField]
     public Dictionary<int, string> textDi = new Dictionary<int, string>();
     public Dictionary<int, string> textName = new Dictionary<int, string>();
-    public int keyT=0;
-    public int keys = 5;
+    public Dictionary<int, string> Queist = new Dictionary<int, string>();
+    public Dictionary<int, string> answerT = new Dictionary<int, string>();
+    public Dictionary<int, string> answerName = new Dictionary<int, string>();
+    public int mainKeyStart= 0;
+    public int mainKeyEnd = 5;
+    public int answerStart = 0;
+    public int answerEnd = 0;
     public int gameplaying=0;
-    void Json()
+    public string[] jsonName=new string[3];
+    
+    void Json(string name,int e)
     {
-        string jsonT = File.ReadAllText(Application.dataPath + "/Resources/Json/DigoText.json");
+        string jsonT = File.ReadAllText(Application.dataPath + "/Resources/Json/"+name+".json");
         Debug.Log(" " + jsonT);
         JsonData diT = JsonMapper.ToObject(jsonT);
-        for (int i = 0; i < diT.Count; i++)
+        Debug.Log(" " + diT);
+        switch (e)
         {
-            textDi.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
-            textName.Add(((int)diT[i]["Id"]), diT[i]["Name"].ToString());
-            Debug.Log(" " + textDi[i]);
-            Debug.Log(" " + textName[i]);
+            case 0:
+                for (int i = 0; i < diT.Count; i++)
+                {
+                    textDi.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
+                    textName.Add(((int)diT[i]["Id"]), diT[i]["Name"].ToString());
+                    Debug.Log(" " + textDi[i]);
+                    Debug.Log(" " + textName[i]);
+                }
+                break;
+            case 1:
+                for (int i = 0; i < diT.Count; i++)
+                {
+                    Queist.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
+                    
+                    Debug.Log(" " + Queist[i]);
+                    
+                }
+                break;
+            case 2:
+                for (int i = 0; i < diT.Count; i++)
+                {
+                    answerT.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
+                    answerName.Add(((int)diT[i]["Id"]), diT[i]["Name"].ToString());
+                    Debug.Log(" " + answerT[i]);
+                    Debug.Log(" " + answerName[i]);
+                }
+                break;
+            default:
+                Debug.Log("응 다른값~");
+                break;
+
+
         }
+        
+        
+        
 
 
 
@@ -63,8 +101,12 @@ public class GameM : MonoBehaviour
         day = 1;
         idNumber = 1;
         slotsIdNm = 1;
-        Json();
-        string currentText = txt.text.Substring(0, txt.text.Length - 1);
+
+        for (int i = 0; i < jsonName.Length; i++)
+        {
+            Json(jsonName[i],i);
+        }
+        
 
         Debug.Log("릴");
         
@@ -113,6 +155,7 @@ public void OnLoadScene(Scene scene, LoadSceneMode mode)
     }
     if (scene.name == "MainGame")
     {
+        
         Money();
 
         inv = GameObject.Find("Canvas").transform.Find("Invetory").GetComponent<Invetory>();

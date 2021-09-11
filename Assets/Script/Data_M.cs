@@ -62,11 +62,11 @@ public class Data_M : MonoBehaviour
             }
             else if (i == 3)
             {
-                gameStat.Add(gameM.keyT);
+                gameStat.Add(gameM.mainKeyStart);
             }
             else if (i == 4)
             {
-                gameStat.Add(gameM.keys);
+                gameStat.Add(gameM.mainKeyStart);
             }
             else
             {
@@ -143,11 +143,11 @@ public class Data_M : MonoBehaviour
             }
             else if (i == 3)
             {
-                gameM.keyT = ((int)StatD[i]);
+                gameM.mainKeyStart = ((int)StatD[i]);
             }
             else if (i == 4)
             {
-                gameM.keys = ((int)StatD[i]);
+                gameM.mainKeyStart = ((int)StatD[i]);
             }
             else
             {

@@ -161,9 +161,12 @@ public class Player_M : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shop")
         {
-            gameM.keys = 14;
-            gameM.keyT = 10;
-            gameM.gameLoad = 1;
+            if (gameM.gameLoad == 1)
+            {
+                gameM.mainKeyEnd = 14;
+                gameM.mainKeyStart = 10;
+                FindObjectOfType<Speaking>().Dige();
+            }
             Debug.Log("B");
             shopOn = true;
         }

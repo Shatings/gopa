@@ -1275,6 +1275,21 @@ PrefabInstance:
       propertyPath: txt
       value: 
       objectReference: {fileID: 4900000, guid: 1413aa257f9d2a84db3837cbf4cc458a, type: 3}
+    - target: {fileID: 4670698350965236600, guid: 7d0de75a6196f7e469bb77806081cb48,
+        type: 3}
+      propertyPath: jsonName.Array.data[0]
+      value: DigoText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670698350965236600, guid: 7d0de75a6196f7e469bb77806081cb48,
+        type: 3}
+      propertyPath: jsonName.Array.data[1]
+      value: Queist
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670698350965236600, guid: 7d0de75a6196f7e469bb77806081cb48,
+        type: 3}
+      propertyPath: jsonName.Array.data[2]
+      value: Answer
+      objectReference: {fileID: 0}
     - target: {fileID: 4670698350965236601, guid: 7d0de75a6196f7e469bb77806081cb48,
         type: 3}
       propertyPath: m_RootOrder

@@ -37,6 +37,10 @@ public class Speaking : MonoBehaviour
         {
             Que[i].SetActive(false);
         }
+        if (gameM.gameLoad == 0)
+        {
+            Dige();
+        }
         
         
        
@@ -60,6 +64,7 @@ public class Speaking : MonoBehaviour
                 time = 0;
             }
         }
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
@@ -70,22 +75,24 @@ public class Speaking : MonoBehaviour
     }
     public void Dige()
     {
-        if (gameM.keyT <= gameM.keys)
+        if (gameM.mainKeyStart <= gameM.mainKeyEnd)
         {
             textbox.SetActive(true);
-            textN.text = "<size=60>" + gameM.textName[gameM.keyT]+"</size>";
+            textN.text = "<size=60>" + gameM.textName[gameM.mainKeyStart]+"</size>";
 
-            texts.text = "<size=50> " + gameM.textDi[gameM.keyT] + "</size>";
+            texts.text = "<size=50> " + gameM.textDi[gameM.mainKeyStart] + "</size>";
             
-            if (gameM.keyT == gameM.keys&&gameM.gameLoad==1)
+            if (gameM.mainKeyStart == gameM.mainKeyEnd&&gameM.gameLoad==1)
             {
                 Quist();
-                gameM.gameLoad++;
+               
             }
-            gameM.keyT++;
+            gameM.mainKeyStart++;
         }
         else
         {
+            Debug.Log("들가자");
+            
             textbox.SetActive(false);
         }
     }
@@ -95,7 +102,7 @@ public class Speaking : MonoBehaviour
         for(int i = 0; i < Que.Count; i++)
         {
             Que[i].SetActive(true);
-            Que[i].transform.Find("Text").GetComponent<Text>().text = "<size=50> " + gameM.textDi[gameM.keyT + i]+"</size>";
+            Que[i].transform.Find("Text").GetComponent<Text>().text = "<size=50> " + gameM.Queist[i]+"</size>";
         }
         
     }
@@ -110,7 +117,7 @@ public class Speaking : MonoBehaviour
             if (ob.name.Equals(q[i].name))
             {
                 Debug.Log("클릭~ "+ob.name);
-                gameM.keys *= 1000;
+                
                 index = i;
                 
              
