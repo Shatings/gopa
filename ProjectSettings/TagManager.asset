@@ -21,6 +21,7 @@ TagManager:
   - Npc11
   - Npc12
   - Shop
+  - MainHoll
   layers:
   - Default
   - TransparentFX

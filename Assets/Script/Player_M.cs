@@ -23,13 +23,15 @@ public class Player_M : MonoBehaviour
     public bool shopOn=false;
     public ScenesM scenes;
     public GameM gameM;
+    public float shopX=-127f;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        shopX = -127f;
         speed = 5f;
         coll = GetComponent<Collider2D>();
         rigid = GetComponent<Rigidbody2D>();
@@ -161,12 +163,7 @@ public class Player_M : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shop")
         {
-            if (gameM.gameLoad == 1)
-            {
-                gameM.mainKeyEnd = 14;
-                gameM.mainKeyStart = 10;
-                FindObjectOfType<Speaking>().Dige();
-            }
+            
             Debug.Log("B");
             shopOn = true;
         }
@@ -218,6 +215,16 @@ public class Player_M : MonoBehaviour
         if (collision.gameObject.tag == "Npc12")
         {
             Debug.Log("" + 12);
+        }
+        if (collision.gameObject.tag == "MainHoll")
+        {
+            if (gameM.gameLoad == 1)
+            {
+                gameM.mainKeyEnd = 14;
+                gameM.mainKeyStart = 10;
+                FindObjectOfType<Speaking>().Dige();
+                this.transform.position = new Vector3(shopX, transform.position.y, transform.position.z);
+            }
         }
 
     }

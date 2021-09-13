@@ -18,6 +18,9 @@ public class Speaking : MonoBehaviour
     public List<GameObject> Que = new List<GameObject>();
    
     public float time;
+    public bool endSpeking = false;
+
+    public bool answeron = false;
 
 
   
@@ -68,15 +71,24 @@ public class Speaking : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-
-            Dige();
+            if (answeron == true)
+            {
+                AnswerDigo();
+            }
+            else
+            {
+                Dige();
+            }
+            
             
         }
+        
     }
     public void Dige()
     {
         if (gameM.mainKeyStart <= gameM.mainKeyEnd)
         {
+            endSpeking = false;
             textbox.SetActive(true);
             textN.text = "<size=60>" + gameM.textName[gameM.mainKeyStart]+"</size>";
 
@@ -95,6 +107,11 @@ public class Speaking : MonoBehaviour
             
             textbox.SetActive(false);
         }
+        if (gameM.mainKeyStart > gameM.mainKeyEnd && endSpeking == false)
+        {
+            endSpeking = true;
+            gameM.gameLoad++;
+        }
     }
     public void Quist()
     {
@@ -110,11 +127,11 @@ public class Speaking : MonoBehaviour
     {
         int index = 0;
 
-        List<GameObject>  q = Que;
-        for(int i = 0; i < q.Count; i++)
+        
+        for(int i = 0; i < Que.Count; i++)
         {
          
-            if (ob.name.Equals(q[i].name))
+            if (ob.name.Equals(Que[i].name))
             {
                 Debug.Log("클릭~ "+ob.name);
                 
@@ -122,16 +139,72 @@ public class Speaking : MonoBehaviour
                 
              
             }
-            
 
-        }
-        for(int i = 0; i < Que.Count; i++)
-        {
             Que[i].SetActive(false);
         }
-        q.Remove(q[index]);
-        Dige();
+      
        
+        switch (index)
+        {
+            case 0:
+                if (gameM.gameLoad == 2)
+                {
+                    gameM.answerStart = 0;
+                    gameM.answerEnd = 2;
+                }
+                break;
+            case 1:
+                if (gameM.gameLoad == 2)
+                {
+                    gameM.answerStart = 3;
+                    gameM.answerEnd = 5;
+                }
+                break;
+            case 2:
+                if (gameM.gameLoad == 2)
+                {
+                    gameM.answerStart = 6;
+                    gameM.answerEnd = 8;
+                }
+                break;
+            case 3:
+                if (gameM.gameLoad == 2)
+                {
+                    gameM.mainKeyStart++;
+                    gameM.mainKeyEnd += 10;
+                }
+                break;
+        }
+       
+        if (index == 3)
+        {
+            Dige();
+        }
+        else
+        {
+            answeron = true;
+            AnswerDigo();
+        }
+    }
+    void AnswerDigo()
+    {
+        if (gameM.answerStart <= gameM.answerEnd)
+        {
+            textbox.SetActive(true);
+            textN.text = "<size=60>" + gameM.answerName[gameM.answerStart] + "</size>";
+
+            texts.text = "<size=50> " + gameM.answerT[gameM.answerStart] + "</size>";
+            gameM.answerStart++;
+        }
+        else
+        {
+            Debug.Log("들가자");
+            answeron = false;
+           
+            Quist();
+
+
+        }
     }
     public void InvetoryError(item item,int id)
     {
