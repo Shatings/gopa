@@ -22,6 +22,8 @@ TagManager:
   - Npc12
   - Shop
   - MainHoll
+  - MainQuit
+  - GameOn
   layers:
   - Default
   - TransparentFX

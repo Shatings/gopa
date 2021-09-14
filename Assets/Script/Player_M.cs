@@ -24,6 +24,7 @@ public class Player_M : MonoBehaviour
     public ScenesM scenes;
     public GameM gameM;
     public float shopX=-127f;
+    public float mainX = 0;
     
 
 
@@ -163,7 +164,7 @@ public class Player_M : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shop")
         {
-            
+
             Debug.Log("B");
             shopOn = true;
         }
@@ -218,12 +219,27 @@ public class Player_M : MonoBehaviour
         }
         if (collision.gameObject.tag == "MainHoll")
         {
+            this.transform.position = new Vector3(shopX, transform.position.y, transform.position.z);
             if (gameM.gameLoad == 1)
             {
                 gameM.mainKeyEnd = 14;
-                gameM.mainKeyStart = 10;
+                gameM.mainKeyStart = 6;
                 FindObjectOfType<Speaking>().Dige();
+
                 this.transform.position = new Vector3(shopX, transform.position.y, transform.position.z);
+            }
+        }
+        if (collision.gameObject.tag == "MainQuit")
+        {
+            this.transform.position = new Vector3(mainX, transform.position.y, transform.position.z);
+        }
+        if (collision.gameObject.tag == "GameOn")
+        {
+            if (gameM.gameLoad == 3)
+            {
+                gameM.mainKeyEnd = 27;
+                gameM.mainKeyStart = 25;
+                FindObjectOfType<Speaking>().Dige();
             }
         }
 

@@ -45,7 +45,7 @@ public class Data_M : MonoBehaviour
         Debug.Log(item);
         File.WriteAllText(Application.dataPath + "/Resources/Json/ItemData.json", item.ToString());
 
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i <= 5; i++)
         {
             if (i == 0)
             {
@@ -66,7 +66,11 @@ public class Data_M : MonoBehaviour
             }
             else if (i == 4)
             {
-                gameStat.Add(gameM.mainKeyStart);
+                gameStat.Add(gameM.mainKeyEnd);
+            }
+            else if (i == 5)
+            {
+                gameStat.Add(gameM.gameLoad);
             }
             else
             {
@@ -147,7 +151,11 @@ public class Data_M : MonoBehaviour
             }
             else if (i == 4)
             {
-                gameM.mainKeyStart = ((int)StatD[i]);
+                gameM.mainKeyEnd = ((int)StatD[i]);
+            }
+            else if (i == 5)
+            {
+                gameM.gameLoad = ((int)StatD[i]);
             }
             else
             {
