@@ -70,9 +70,9 @@ public class Speaking : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)||gameM.reTextS)
         {
-
+            gameM.reTextS = false;
             if (answeron == true)
             {
                 AnswerDigo();
@@ -90,6 +90,7 @@ public class Speaking : MonoBehaviour
     {
         if (gameM.mainKeyStart <= gameM.mainKeyEnd)
         {
+            FindObjectOfType<Player_M>().moveing = false;
             endSpeking = false;
             textbox.SetActive(true);
             textImage.sprite = Resources.Load(gameM.images[gameM.mainKeyStart], typeof(Sprite)) as Sprite;
@@ -112,6 +113,7 @@ public class Speaking : MonoBehaviour
         }
         if (gameM.mainKeyStart > gameM.mainKeyEnd && endSpeking == false)
         {
+            FindObjectOfType<Player_M>().moveing = true;
             endSpeking = true;
             gameM.gameLoad++;
         }

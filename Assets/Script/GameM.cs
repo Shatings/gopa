@@ -34,6 +34,7 @@ public class GameM : MonoBehaviour
    
     [SerializeField]
     public string[,] sentence;
+
     public Dictionary<int, string> textDi = new Dictionary<int, string>();
     public Dictionary<int, string> textName = new Dictionary<int, string>();
     public Dictionary<int, string> Queist = new Dictionary<int, string>();
@@ -41,12 +42,16 @@ public class GameM : MonoBehaviour
     public Dictionary<int, string> answerName = new Dictionary<int, string>();
     public Dictionary<int, string> images = new Dictionary<int, string>();
     public Dictionary<int, string> answerImages = new Dictionary<int, string>();
+
     public int mainKeyStart= 0;
     public int mainKeyEnd = 5;
     public int answerStart = 0;
     public int answerEnd = 0;
     public int gameplaying=0;
     public string[] jsonName=new string[3];
+
+
+    public bool reTextS = false;
     
     void Json(string name,int e)
     {
@@ -161,7 +166,13 @@ public void OnLoadScene(Scene scene, LoadSceneMode mode)
     {
         
         Money();
-
+        if (gameLoad == 4)
+        {
+           mainKeyStart = 28;
+           mainKeyEnd = 32;
+           reTextS = true;
+               
+        }
         inv = GameObject.Find("Canvas").transform.Find("Invetory").GetComponent<Invetory>();
         inv.LoadInv();
 
@@ -209,17 +220,21 @@ public void OnLoadScene(Scene scene, LoadSceneMode mode)
               Debug.Log("오브젝트불러오기2");
             if (i==_item.id-1&&GameObject.Find("Npc"+(i+1)+ "(Clone)")==null)
             {
-                Debug.Log("오브젝트불러오기3");
-                npOb = Resources.Load("Ob/Npc" + invetory[i].id) as GameObject;
-                NpcV(invetory[i]);
-                Debug.Log(npOb);
-                Debug.Log(npcTf);
-                npOb = Instantiate(npOb, npcTf, Quaternion.identity);
+                NpcMade(i);
             }
             
               
             
         }
+    }
+    public void NpcMade(int i)
+    {
+        Debug.Log("오브젝트불러오기3");
+        npOb = Resources.Load("Ob/Npc" + invetory[i].id) as GameObject;
+        NpcV(invetory[i]);
+        Debug.Log(npOb);
+        Debug.Log(npcTf);
+        npOb = Instantiate(npOb, npcTf, Quaternion.identity);
     }
     
     public void NpcV(item _items)

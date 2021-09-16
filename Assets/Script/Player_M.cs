@@ -8,7 +8,7 @@ public class Player_M : MonoBehaviour
     [SerializeField]
     private Vector3 vector;
     [SerializeField]
-    private bool moveing;
+    public bool moveing=false;
 
  
 
@@ -46,16 +46,17 @@ public class Player_M : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (moveing)
+        {
+
+            Move();
+        }
     }
     // Update is called once per frame
     void Update()
     {
        
-        if (moveing)
-        {
-            oderMoving();
-        }
+        
         if (Input.GetKeyDown(KeyCode.I))
         {
             inVetry();
@@ -164,7 +165,14 @@ public class Player_M : MonoBehaviour
     {
         if (collision.gameObject.tag == "Shop")
         {
+            if (gameM.gameLoad == 5)
+            {
 
+                FindObjectOfType<Invetory>().Additem(Resources.Load("items/Stemer1")as item);
+                gameM.mainKeyStart = 33;
+                gameM.mainKeyEnd = 45;
+                FindObjectOfType<Speaking>().Dige();
+            }
             Debug.Log("B");
             shopOn = true;
         }
@@ -246,7 +254,7 @@ public class Player_M : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Shpp")
+        if (collision.gameObject.tag == "Shop")
         {
             Debug.Log("A");
             shopOn = false;

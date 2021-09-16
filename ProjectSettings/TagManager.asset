@@ -24,6 +24,7 @@ TagManager:
   - MainHoll
   - MainQuit
   - GameOn
+  - LoLTagert
   layers:
   - Default
   - TransparentFX
