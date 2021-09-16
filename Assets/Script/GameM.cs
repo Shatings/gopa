@@ -39,6 +39,8 @@ public class GameM : MonoBehaviour
     public Dictionary<int, string> Queist = new Dictionary<int, string>();
     public Dictionary<int, string> answerT = new Dictionary<int, string>();
     public Dictionary<int, string> answerName = new Dictionary<int, string>();
+    public Dictionary<int, string> images = new Dictionary<int, string>();
+    public Dictionary<int, string> answerImages = new Dictionary<int, string>();
     public int mainKeyStart= 0;
     public int mainKeyEnd = 5;
     public int answerStart = 0;
@@ -59,6 +61,7 @@ public class GameM : MonoBehaviour
                 {
                     textDi.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
                     textName.Add(((int)diT[i]["Id"]), diT[i]["Name"].ToString());
+                    images.Add(((int)diT[i]["Id"]),diT[i]["Image"].ToString());
                     Debug.Log(" " + textDi[i]);
                     Debug.Log(" " + textName[i]);
                 }
@@ -77,6 +80,7 @@ public class GameM : MonoBehaviour
                 {
                     answerT.Add(((int)diT[i]["Id"]), diT[i]["Text"].ToString());
                     answerName.Add(((int)diT[i]["Id"]), diT[i]["Name"].ToString());
+                    answerImages.Add(((int)diT[i]["Id"]),diT[i]["Image"].ToString());
                     Debug.Log(" " + answerT[i]);
                     Debug.Log(" " + answerName[i]);
                 }

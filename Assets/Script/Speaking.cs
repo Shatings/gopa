@@ -21,6 +21,7 @@ public class Speaking : MonoBehaviour
     public bool endSpeking = false;
 
     public bool answeron = false;
+    public Image textImage;
 
 
   
@@ -29,6 +30,7 @@ public class Speaking : MonoBehaviour
     {
         textbox = GameObject.Find("TextBox").gameObject;
         texts = textbox.transform.Find("Text"). GetComponent<Text>();
+        textImage = textbox.transform.Find("Image").GetComponent<Image>();
         gameM = FindObjectOfType<GameM>();
         scoreT = transform.Find("Score").GetComponent<Text>();
         InveotoryT= transform.Find("InvetoryText").GetComponent<Text>();
@@ -90,6 +92,7 @@ public class Speaking : MonoBehaviour
         {
             endSpeking = false;
             textbox.SetActive(true);
+            textImage.sprite = Resources.Load(gameM.images[gameM.mainKeyStart], typeof(Sprite)) as Sprite;
             textN.text = "<size=60>" + gameM.textName[gameM.mainKeyStart]+"</size>";
 
             texts.text = "<size=50> " + gameM.textDi[gameM.mainKeyStart] + "</size>";
@@ -191,6 +194,7 @@ public class Speaking : MonoBehaviour
         if (gameM.answerStart <= gameM.answerEnd)
         {
             textbox.SetActive(true);
+            textImage.sprite = Resources.Load(gameM.answerImages[gameM.answerStart], typeof(Sprite)) as Sprite;
             textN.text = "<size=60>" + gameM.answerName[gameM.answerStart] + "</size>";
 
             texts.text = "<size=50> " + gameM.answerT[gameM.answerStart] + "</size>";
